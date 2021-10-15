@@ -1,8 +1,9 @@
-package com.dreamgamescase.TournamentApi.Repository;
+package com.dreamgamescase.TournamentApi.repository;
 
-import com.dreamgamescase.TournamentApi.Model.TournamentGroup;
+import com.dreamgamescase.TournamentApi.model.TournamentGroup;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import java.util.List;
 
 public interface ITournamentGroupRepository extends JpaRepository<TournamentGroup,Integer> {
 
@@ -20,4 +21,7 @@ public interface ITournamentGroupRepository extends JpaRepository<TournamentGrou
 
     @Query(value = "SELECT u FROM TournamentGroup u WHERE u.isactive = true AND u.groupid = ?1 AND u.capacity < 20")
     TournamentGroup findGroupCapacity (Integer groupid);
+
+    @Query(value = "SELECT u FROM TournamentGroup u WHERE u.isactive = true")
+    List<TournamentGroup> findActiveGroup ();
 }

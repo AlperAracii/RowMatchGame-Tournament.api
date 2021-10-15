@@ -1,11 +1,10 @@
-package com.dreamgamescase.TournamentApi.Service;
+package com.dreamgamescase.TournamentApi.service;
 
-import com.dreamgamescase.TournamentApi.Model.LeaderBoardModel;
-import com.dreamgamescase.TournamentApi.Model.TournamentMapping;
-import com.dreamgamescase.TournamentApi.Repository.ITournamentMappingRepository;
+import com.dreamgamescase.TournamentApi.model.LeaderBoardModel;
+import com.dreamgamescase.TournamentApi.model.TournamentMapping;
+import com.dreamgamescase.TournamentApi.repository.ITournamentMappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,22 +19,22 @@ public class LeaderBoardService implements ILeaderBoardService {
         _tournamentMappingRepository = tournamentMappingRepository;
     }
 
-    public List<LeaderBoardModel> GetLeaderboardRequest(int groupid) {
+    public List<LeaderBoardModel> getLeaderboardRequest(int groupId) {
 
-        List<TournamentMapping> map = _tournamentMappingRepository.getGroupUser(groupid);
-        List<LeaderBoardModel> leaderBoard = Mapping(map);
+        List<TournamentMapping> map = _tournamentMappingRepository.getGroupUser(groupId);
+        List<LeaderBoardModel> leaderBoard = mapping(map);
         return leaderBoard;
     }
 
-    public int GetRankRequest(int userid) {
+    public int getRankRequest(int userId) {
         List<LeaderBoardModel> leaderBoard = new ArrayList<LeaderBoardModel>();
-        int gid = _tournamentMappingRepository.getGroupId(userid);
+        int gid = _tournamentMappingRepository.getGroupId(userId);
         List<TournamentMapping> map = _tournamentMappingRepository.getGroupUser(gid);
-        leaderBoard = Mapping(map);
-        return leaderBoard.stream().map(aa -> aa.getUserid()).collect(Collectors.toList()).indexOf(userid) + 1;
+        leaderBoard = mapping(map);
+        return leaderBoard.stream().map(aa -> aa.getUserid()).collect(Collectors.toList()).indexOf(userId) + 1;
     }
 
-    private List<LeaderBoardModel> Mapping(List<TournamentMapping> list) {
+    private List<LeaderBoardModel> mapping(List<TournamentMapping> list) {
         List<LeaderBoardModel> leaderBoard = new ArrayList<LeaderBoardModel>();
 
         for (TournamentMapping aa : list) {

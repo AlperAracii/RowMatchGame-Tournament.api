@@ -1,6 +1,4 @@
-package com.dreamgamescase.TournamentApi.Model;
-
-import java.util.List;
+package com.dreamgamescase.TournamentApi.model;
 
 public class LeaderBoardModel {
 

@@ -1,4 +1,5 @@
-package com.dreamgamescase.TournamentApi.Model;
+package com.dreamgamescase.TournamentApi.model;
+
 import lombok.Data;
 import javax.persistence.*;
 
